@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: my-demo-app-second
+  namespace: tips-webinar
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: my-demo-app-second
+        app: my-demo-app-second
+        version: 'e1b7756'
+    spec:
+      containers:
+      - name: my-demo-app
+        image: r.cfcr.io/codefreshdemo/trivial-web:e1b7756
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "99999Mi"
+           # memory: "64Mi"
+            cpu: "99999m"
+           # cpu: "250m"
+          limits:
+            memory: "99999999Mi"
+           # memory: "128Mi"
+            cpu: "9999999m"
+           # cpu: "500m"
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+      imagePullSecrets:
+        - name: codefresh-generated-r.cfcr.io-cfcr-colors
