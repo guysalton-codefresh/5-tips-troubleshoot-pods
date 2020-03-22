@@ -13,3 +13,4 @@ spec:
             configMapKeyRef:
               name: special-config
               key: special.how
+
